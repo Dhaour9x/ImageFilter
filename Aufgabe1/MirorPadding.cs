@@ -8,16 +8,24 @@ namespace ImageProcessing
 {
     public class MirorPadding : IPadding
     {
+        public IPadding IPadding
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public float[] CreatePadding(float[] data_in, int width_in, int height_in, int filterSize)
         {
             int size = filterSize / 2;
             int N = width_in + size*2;
             int M = height_in + size*2;
             float[] padding = new float[N * M];
-            for (int j = size; j < M-size; ++j)
+            for (int j = 0; j < M; j++)
             {
                 int rowIndex = j * N;
-                for (int i = size; i < N - size; ++i)
+                for (int i = 0; i < N ; i++)
                 {
                     int x = i - 1;
                     int y = j - 1;

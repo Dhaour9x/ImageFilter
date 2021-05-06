@@ -37,7 +37,7 @@ namespace ImageProcessing
             switch (paddType)
             {
                 case PaddedType.PaddedConstant:
-                    return new ConstantPadding(1);
+                    return new ConstantPadding(0);
 
                 case PaddedType.PaddedReplicat:
                     return new ReplicatePadding();
