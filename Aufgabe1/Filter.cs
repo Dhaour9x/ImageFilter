@@ -80,11 +80,40 @@ namespace ImageProcessing
             return result;
         }
 
-        public static float[] SigmaFilter(float[] data_in, int width_in, int height_in, int filtersize)
+        public float[] SigmaFilter(float[] data_in, int width_in, int height_in, int filtersize)
         {
             var size = filtersize / 2;
+            var N = width_in + size * 2;
+            var M = height_in + size * 2;
 
-            return 0;
+            float[] padding = myPadder.CreatePadding(data_in, width_in, height_in, filtersize);
+            float[] result = new float[width_in*height_in];
+            var sigma = 0;
+            List<float> filter = new();
+
+            for (int j = size; j < M - size; ++j)
+            {
+                for (int i = size; i < N - size; ++i)
+                {
+                    var middelIndex = 0;
+                    var middelValue = 0f;
+                    for (int y = -size; y < size + 1; ++y)
+                    {
+                        for (int x = -size; x < size + 1; ++x)
+                        {
+                            filter.Add(padding[(j + y) * N + (i + x)]);
+                        }
+                    }
+                    filter.Sort();
+
+                    middelIndex = (int)Math.Floor((decimal)filter.Count / 2);
+                    middelValue = filter[middelIndex];
+
+                    result[(i - size) + (j - size) * width_in] = middelValue;
+                    filter.Clear();
+                }
+            }
+            return result;
         }
     }
 }
