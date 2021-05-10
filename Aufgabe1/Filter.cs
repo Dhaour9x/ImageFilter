@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageProcessing
 {
-    public class Filter
+    public class Filter   
     {
         private readonly IPadding myPadder;
 
@@ -15,27 +12,12 @@ namespace ImageProcessing
             myPadder = padder;
 
         }
-        //public Filter()
-        //{
 
-        //}
-        //public readonly float Constant = 0;
-        //public IPadding PaddType { get; set; }
         public int FilterSize { get; set; }
-        //public float[] data_in { get; set; }
-        //public int width_in { get; set; }
-        //public int width_in { get; set; }
-
-        //public filter(ipadding _paddtype, int _filtersize)
-        //{
-        //    // this.constant = _constant;
-        //    this.paddtype = _paddtype;
-        //    this.filtersize = _filtersize;
-        //}
 
         public float[] MeanFilter2D(float[] data_in, int width_in, int height_in, int filtersize)
         {
-            int size = filtersize /2;
+            int size = filtersize / 2;
             int N = width_in + size * 2; // + FilterSizes.X -1 statt size*2
             int M = height_in + size * 2; // + FilterSizes[1] -1 statt size*2
             // int D = depth_in + FilterSites[2] -1;
@@ -43,7 +25,7 @@ namespace ImageProcessing
 
             float[] result = new float[width_in * height_in];
             // for (int k = size; k < D -size -1; k++) Iteration über slice/ z 
-            for (int j = size; j < M - size ; j++)
+            for (int j = size; j < M - size; j++)
             {
                 for (int i = size; i < N - size; i++)
                 {
@@ -55,22 +37,47 @@ namespace ImageProcessing
                             summedupValues += padding[(j + y) * N + (i + x)];
                         }
                     }
-                    result[(i - size) + (j - size) * width_in] = summedupValues / (filtersize*filtersize);
+                    result[(i - size) + (j - size) * width_in] = summedupValues / (filtersize * filtersize);
                 }
             }
             return result;
         }
 
-        public float[] MedianFilter(float[] data_in, int width_in, int height_in, int filterSize)
+        public float[] MedianFilter(float[] data_in, int width_in, int height_in, int filtersize)
         {
-            int size = FilterSize / 2;
-            int N = width_in + size * 2; // + FilterSizes.X -1 statt size*2
-            int M = height_in + size * 2; // + FilterSizes[1] -1 statt size*2
-            // int D = depth_in + FilterSites[2] -1;
-            float[] padding = new float[N * M];
-            
-            
-            return padding;
+            int size = filtersize / 2;
+
+            int N = width_in + size * 2;
+            int M = height_in + size * 2;
+
+            float[] padding = myPadder.CreatePadding(data_in, width_in, height_in, filtersize);
+            float[] result = new float[width_in * height_in];
+
+            List<float> filter = new();
+
+            for (int j = size; j < M - size; ++j)
+            {
+                for (int i = size; i < N - size; ++i)
+                {
+                    var middelIndex = 0;
+                    var middelValue = 0f;
+                    for (int y = -size; y < size + 1; ++y)
+                    {
+                        for (int x = -size; x < size + 1; ++x)
+                        {
+                            filter.Add(padding[(j + y) * N + (i + x)]);
+                        }
+                    }
+                    filter.Reverse();
+
+                    middelIndex = (int)Math.Ceiling((decimal)filtersize / 2);
+                    middelValue = filter[middelIndex];
+
+                    result[(i - size) + (j - size) * width_in] = middelValue;
+                    filter.Clear();
+                }
+            }
+            return result;
         }
     }
 }
