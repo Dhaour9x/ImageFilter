@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ImageProcessing
 {
-    public class Filter   
+    public class Filter
     {
         private readonly IPadding myPadder;
 
@@ -68,9 +68,9 @@ namespace ImageProcessing
                             filter.Add(padding[(j + y) * N + (i + x)]);
                         }
                     }
-                    filter.Reverse();
+                    filter.Sort();
 
-                    middelIndex = (int)Math.Ceiling((decimal)filtersize / 2);
+                    middelIndex = (int)Math.Floor((decimal)filter.Count / 2);
                     middelValue = filter[middelIndex];
 
                     result[(i - size) + (j - size) * width_in] = middelValue;
@@ -78,6 +78,13 @@ namespace ImageProcessing
                 }
             }
             return result;
+        }
+
+        public static float[] SigmaFilter(float[] data_in, int width_in, int height_in, int filtersize)
+        {
+            var size = filtersize / 2;
+
+            return 0;
         }
     }
 }

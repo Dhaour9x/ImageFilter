@@ -41,7 +41,7 @@ namespace ImageProcessing
             //    Console.Write(result1[i] +" ");
             //}
 
-            var result2 = mean2F.MedianFilter(TestSlice, 10, 6, 3);
+            var result2 = mean2F.MedianFilter(A, 5, 3, 3);
             for (int i = 0; i < result2.Length; i++)
             {
                 Console.Write(result2.ElementAt(i) + " ");
