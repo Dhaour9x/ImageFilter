@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageProcessing", "Aufgabe1\ImageProcessing.csproj", "{1F68857A-A00C-4E03-9CF5-7CF5754BAE9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeanFilterTest", "..\..\..\c_sharp\MeanFilterTest\MeanFilterTest\MeanFilterTest\MeanFilterTest.csproj", "{11D4AF8C-D449-4A0C-9F3B-AD9A60F855C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImagePrcessingTest", "..\MeanFilterTest\MeanFilterTest\ImagePrcessingTest.csproj", "{481EB153-F22E-4DD4-BC8A-0D06DA292EA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{1F68857A-A00C-4E03-9CF5-7CF5754BAE9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F68857A-A00C-4E03-9CF5-7CF5754BAE9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F68857A-A00C-4E03-9CF5-7CF5754BAE9B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11D4AF8C-D449-4A0C-9F3B-AD9A60F855C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11D4AF8C-D449-4A0C-9F3B-AD9A60F855C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11D4AF8C-D449-4A0C-9F3B-AD9A60F855C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11D4AF8C-D449-4A0C-9F3B-AD9A60F855C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{481EB153-F22E-4DD4-BC8A-0D06DA292EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481EB153-F22E-4DD4-BC8A-0D06DA292EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{481EB153-F22E-4DD4-BC8A-0D06DA292EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481EB153-F22E-4DD4-BC8A-0D06DA292EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,16 +9,20 @@ namespace ImageProcessing
 {
     public class ConstantPadding : IPadding
     {
-        public int Constant { get; set; }
+        public int Constant { get; private set; }
 
-        public ConstantPadding(int _Constant)
+        public int FilterSize { get; private set; }
+
+        public ConstantPadding(int filterSize, int _Constant)
         {
             Constant = _Constant;
+            FilterSize = filterSize;
         }
-        public float[] CreatePadding(float[] data_in, int width_in, int height_in, int filterSize)
+
+        public float[] CreatePadding(float[] data_in, int width_in, int height_in)
         {
-            int N = width_in + filterSize - 1;
-            int M = height_in + filterSize - 1;
+            int N = width_in + 2;
+            int M = height_in + 2;
 
             float[] padding = new float[M * N];
             for (int i = 0; i < padding.Length; i++)
@@ -26,7 +30,7 @@ namespace ImageProcessing
                 padding[i] = Constant;
             }
 
-            int size = filterSize / 2;
+            int size = FilterSize / 2;
             for (int j = size; j < M - size; j++)
             {
                 int rowIndex = j * N;
