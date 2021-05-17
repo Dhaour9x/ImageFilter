@@ -33,44 +33,16 @@ namespace ImageProcessing
 
         static void Main(string[] args)
         {
-           // IPadding padderOld = GetPaddingByType(PaddedType.PaddedConstant);
-            //((ConstantPadding)padderOld).Constant = 5;
+
             IPadding padder = new ConstantPadding(3, 1);
-            //IPadding padder2 = new ReplicatePadding();
 
-
-            //var mean2F = new Filter(padder);
             var meanFilt = new MeanFilter(padder);
             var result1 = meanFilt.MeanFilter2D(A, 5, 3, 3);
-            //Console.WriteLine(result.ToString());
+            
             for (int i = 0; i < result1.Length; i++)
             {
                 Console.Write(result1[i] + " ");
             }
-            
-
-            //var result2 = mean2F.SigmaFilter(A, 5, 3, 3);
-            //for (int i = 0; i < result2.Length; i++)
-            //{
-            //    Console.Write(result2.ElementAt(i) + " ");
-            //}
-
-            //var result3 = mean2F.FogFilter(A, 5, 3, 3);
-            //for (int i = 0; i < result3.Length; i++)
-            //{
-            //    Console.Write(result3.ElementAt(i) + " ");
-            //}
         }
-
-        //private static IPadding GetPaddingByType(PaddedType paddType)
-        //{
-        //    return paddType switch
-        //    {
-        //       // PaddedType.PaddedConstant => new ConstantPadding(3,0),
-        //        PaddedType.PaddedReplicat => new ReplicatePadding(),
-        //        PaddedType.PaddedMirror => new MirorPadding(3),
-        //        _ => throw new ArgumentException($"'{paddType}' is not a valid logger selection"),
-        //    };
-        //}
     }
 }
